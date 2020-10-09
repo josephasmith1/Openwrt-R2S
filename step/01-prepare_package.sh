@@ -86,11 +86,12 @@ svn co https://github.com/openwrt/packages/trunk/net/curl package/network/utils/
 rm -rf ./feeds/packages/devel/gcc
 svn co https://github.com/openwrt/packages/trunk/devel/gcc feeds/packages/devel/gcc
 #update Golang
-rm -rf ./feeds/packages/lang/golang
-svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
-rm -rf ./feeds/packages/lang/golang/.svn
-rm -rf ./feeds/packages/lang/golang/golang
-svn co https://github.com/project-openwrt/packages/trunk/lang/golang/golang feeds/packages/lang/golang/golang
+#rm -rf ./feeds/packages/lang/golang
+#svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
+#rm -rf ./feeds/packages/lang/golang/.svn
+#rm -rf ./feeds/packages/lang/golang/golang
+#svn co https://github.com/project-openwrt/packages/trunk/lang/golang/golang feeds/packages/lang/golang/golang
+svn co https://github.com/openwrt/packages/trunk/lang/golang package/feeds/lang/golang/
 
 #add libs
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/nghttp2 package/libs/nghttp2
@@ -267,11 +268,21 @@ git clone https://github.com/natelol/luci-app-oled package/natelol/luci-app-oled
 #
 #crypto
 
+#fix some depends, useless
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/utils/fuse package/utils/fuse
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/services/samba36 package/network/services/samba36
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libconfig package/libs/libconfig
+svn co https://github.com/openwrt/packages/trunk/libs/nghttp2 package/libs/nghttp2
+svn co https://github.com/openwrt/packages/trunk/libs/libcap-ng package/libs/libcap-ng
+rm -rf ./feeds/packages/utils/collectd
+svn co https://github.com/openwrt/packages/trunk/utils/collectd feeds/packages/utils/collectd
+
 #最大连接
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 #翻译
-git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-zh package/lean/lean-translate
-wget -O package/lean/lean-translate/files/zzz-default-settings https://github.com/quintus-lab/Openwrt-R2S/raw/master/script/zzz-default-settings
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/default-settings package/lean/default-settings
+#git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-zh package/lean/lean-translate
+wget -O package/lean/default-settings/files/zzz-default-settings https://github.com/quintus-lab/Openwrt-R2S/raw/master/script/zzz-default-settings
 
 #生成默认配置及缓存
 rm -rf .config
