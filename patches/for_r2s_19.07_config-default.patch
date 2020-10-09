@@ -173,3 +173,25 @@ diff --git a/package/feeds/packages/dnsdist/Makefile b/package/feeds/packages/dn
 
          config DNSDIST_OPENSSL
                  bool "OpenSSL"
+diff --git a/package/lean/default-settings/Makefile b/package/lean/default-settings/Makefile
+index 680a5d439..483513325 100644
+--- a/package/lean/default-settings/Makefile
++++ b/package/lean/default-settings/Makefile
+@@ -21,7 +21,7 @@ define Package/default-settings
+   CATEGORY:=LuCI
+   TITLE:=LuCI support for Default Settings
+   PKGARCH:=all
+-  DEPENDS:=+luci-base +luci +luci-compat +@LUCI_LANG_zh-cn
++  DEPENDS:=+luci-base +luci +luci-compat +@LUCI_LANG_en
+ endef
+
+ define Package/default-settings/description
+@@ -38,7 +38,6 @@ define Package/default-settings/install
+        $(INSTALL_DIR) $(1)/etc/uci-defaults
+        $(INSTALL_BIN) ./files/zzz-default-settings $(1)/etc/uci-defaults/99-default-settings
+        $(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
+-       po2lmo ./i18n/default.zh-cn.po $(1)/usr/lib/lua/luci/i18n/default.zh-cn.lmo
+ endef
+
+ $(eval $(call BuildPackage,default-settings))
+ 
